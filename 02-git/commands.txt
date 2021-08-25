@@ -16,3 +16,6 @@ git add .
 
 // commit
 git commit -m "<<message>>"
+
+// upload changes to remote repostory
+git push
