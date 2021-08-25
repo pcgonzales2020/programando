@@ -13,3 +13,6 @@ git checkout <<branchname>>
 // prepare files to be commit
 // "." is a special character to pass all modified files
 git add .
+
+// commit
+git commit -m "<<message>>"
