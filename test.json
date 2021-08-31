@@ -20,7 +20,7 @@
         "status": 200,
         "fixedDelayMilliseconds": 1000,
         "jsonBody": {
-            "singleSelectTokenRandom": {
+            "singleSelectTokenRandomaaa": {
                 "salt": "NUdTTSUIBIYYeAfFGMZTdYCNfNDddaJaaBSBMLKPMZNLaSXDKVOdYADFbcRdKMbO",
                 "randomId": "NFZHUHWZXfPdJVdcgULEPPWfQDBBSOSFPZdJXQRSVCZddFKXIYAQNfHabbXTcPSJ"
             }
