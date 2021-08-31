@@ -1,7 +1,7 @@
 {
     "request": {
         "method": "POST",
-        "url": "/cmrmx/rest/callService/json/public/singleSelectTokenRandomPriv",
+        "xxx": "/cmrmx/rest/callService/json/public/singleSelectTokenRandomPriv",
         "headers": {
             "content-type": {
                 "contains": "application/json"
@@ -9,7 +9,7 @@
         },
         "bodyPatterns": [
             {
-                "equalToJson": {
+                "xx": {
                     "tipoDoc": "INE",
                     "numDoc": "PEAJ840101MVZLRB14"
                 }
@@ -18,11 +18,11 @@
     },
     "response": {
         "status": 200,
-        "fixedDelayMilliseconds": 1000,
+        "xxx": 1000,
         "jsonBody": {
-            "singleSelectTokenRandomaaa": {
-                "salt": "NUdTTSUIBIYYeAfFGMZTdYCNfNDddaJaaBSBMLKPMZNLaSXDKVOdYADFbcRdKMbO",
-                "randomId": "NFZHUHWZXfPdJVdcgULEPPWfQDBBSOSFPZdJXQRSVCZddFKXIYAQNfHabbXTcPSJ"
+            "xxx": {
+                "xxx": "NUdTTSUIBIYYeAfFGMZTdYCNfNDddaJaaBSBMLKPMZNLaSXDKVOdYADFbcRdKMbO",
+                "xxx": "NFZHUHWZXfPdJVdcgULEPPWfQDBBSOSFPZdJXQRSVCZddFKXIYAQNfHabbXTcPSJ"
             }
         },
         "headers": {
