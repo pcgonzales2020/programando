@@ -33,3 +33,11 @@ git commit -m "<<message>>"
 ```
 git push
 ```
+
+## merge
+How to merge my changes from other branch
+
+```
+git checkout main
+git merge origin <<branch>>
+```
