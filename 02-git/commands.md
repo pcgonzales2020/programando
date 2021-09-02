@@ -40,6 +40,7 @@ git push -u origin main
 git push
 ```
 
+<<<<<<< HEAD
 ## update modific blanch to main
 ```
 git merge <<branch name>>
@@ -56,3 +57,12 @@ git pull origin <<blanch name>>
 ```
 
 
+=======
+## merge
+How to merge my changes from other branch
+
+```
+git checkout main
+git merge origin <<branch>>
+```
+>>>>>>> ef3a8561c58deedfb66f15b440683ebb1bf60211
