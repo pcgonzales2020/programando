@@ -54,9 +54,10 @@ class ShoppingCart {
         this.items = this.items.filter(x =>
             x.product.id !== productId
         );
+        
     }
 
-    get totalAmount() {
+    get ['totalAmount']() {
         let result = 0;
 
         for (const item of this.items) {
@@ -66,7 +67,7 @@ class ShoppingCart {
         return result;
     }
 
-    get totalQuantity() {
+    get ['totalQuantity']() {
         let result = 0;
 
         for (const item of this.items) {
