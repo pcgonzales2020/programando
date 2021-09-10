@@ -23,6 +23,37 @@
 // -----------------
 // - Clases en JavaScript https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Classes
 
+class Order {
+    constructor(lines) {
+        this.total = 0;
+        this.iva = 0;
+        this.subTotal = 0;
+        this.lines = [];
+
+        this._prepare(lines);
+    }
+
+    _prepare(lines) {
+        for (const line of lines) {
+            const orderLine = new OrderLine(line.product, line.quantity);
+            this.lines.push(orderLine);
+
+            this.total += orderLine.total;
+        }
+
+        this.subTotal = this.total / 1.18;
+        this.iva = this.total - this.subTotal;
+    }
+}
+
+class OrderLine {
+    constructor(product, quantity) {
+        this.product = product;
+        this.quantity = quantity;
+        this.total = this.product.price * this.quantity;
+    }
+}
+
 class Product {
     constructor(id, name, price) {
         this.id = id;
@@ -38,21 +69,9 @@ class ShoppingCartItem {
     }
 }
 
-class Order {
-    constructor(nameProducto,price, subtotal, iva, total) {
-        this.nameProducto = nameProducto;
-        this.price=price;
-        this.subtotal = subtotal;
-        this.iva = iva;
-        this.total = total;
-    }
-}
-
-
 class ShoppingCart {
     constructor() {
         this.items = [];
-        this.ordr = [];
         this.totalAmount = 0;
         this.totalQuantity = 0;
     }
@@ -73,20 +92,16 @@ class ShoppingCart {
         this._summary();
     }
 
-    orderCart() {
-        for (const item of this.items) {
-            this.ordr.push(
-                new Order(
-                    item.product.name
-                    ,item.product.price
-                    ,item.product.price*item.quantity
-                    ,((item.product.price*item.quantity)*1.18)-(item.product.price*item.quantity)
-                    ,(item.product.price*item.quantity)*1.18
-                )
-            )
-        }
+    purchase() {
+        const order = new Order(this.items);
+
         this.items = [];
+        this.totalAmount = 0;
+        this.totalQuantity = 0;
+
+        return order;
     }
+
     _summary() {
         this.totalAmount = 0;
         this.totalQuantity = 0;
@@ -96,6 +111,8 @@ class ShoppingCart {
             this.totalQuantity += item.quantity;
         }
     }
+
+    // other option in runtime
     /*get totalAmount() {
         let result = 0;
 
@@ -142,9 +159,13 @@ cart.add(products[1], 3);
 });*/
 
 // remove second product
-console.log(`Remove ${products[1].name} product from shopping cart`);
-//cart.remove(products[1].id);
-console.log(cart);
-cart.orderCart();
-console.log(cart.Order);
+// console.log(`Remove ${products[1].name} product from shopping cart`);
+// //cart.remove(products[1].id);
+// console.log(cart);
 
+console.log(cart);
+
+const order = cart.purchase();
+console.log(order);
+
+console.log(cart);
