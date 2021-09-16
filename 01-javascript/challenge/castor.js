@@ -1,65 +1,94 @@
-class ProductItem {
-    constructor(id, name, price) {
-        this.id = id;
+
+const materialTypes = {
+    powerSupply: 0,
+    disk: 1,
+    memory: 2,
+    processor: 3,
+};
+
+class RawMaterialTypeCategory {
+    constructor(name, rawMaterialTypes) {
+        this.name = name;
+        this.rawMaterialTypes = rawMaterialTypes;
+    }
+}
+
+class Product {
+    constructor(name, cost, price, utility) {
         this.name = name;
         this.price = price;
+        this.cost = cost;
+        this.utility = utility;
     }
 }
 
-class BudgetItem {
-    constructor(product, quantity) {
-        this.product = product;
+class RawMaterial {
+    constructor(name, materialType, cost) {
+        this.name = name;
+        this.materialType = materialType;
+        this.cost = cost;
+    }
+}
+
+class ProductProductionMaterial {
+    constructor(material, quantity) {
+        this.material = material;
         this.quantity = quantity;
-        this.total = this.product.price * this.quantity;
+        this.cost = material.cost * quantity;
     }
 }
 
-class Budget {
+class ProductProduction {
     constructor() {
-        this.cost = 0
-        this.income = 0
-        this.utility = 0;
-        this.items = [];
+        this.materials = [];
+        this.rawMaterialTypesCategory = [
+            new RawMaterialTypeCategory('Computadora', [
+                materialTypes.memory,
+                materialTypes.processor,
+                materialTypes.powerSupply
+            ]),
+        ];
     }
 
-    calculate() {
-        this.cost = 0
-        this.income = 0
-        this.utility = 0;
+    add(material, quantity) {
+        this.materials.push(new ProductProductionMaterial(material, quantity));
+    }
 
-        for (const line of this.lines) {
-            this.cost += line.total;
+    create(productName, category) {
+        let cost = 0,
+            utility = 0,
+            price = 0;
+
+        this._validateMaterials(category);
+
+        for (const material of this.materials) {
+            cost += material.cost;
         }
 
-        this.income = (this.cost  * 1.18)* 1.35;
-        this.utility = this.income - this.cost;
+        price = cost * 1.18 * 1.35;
+        utility = price - cost;
+
+        return new Product(productName, cost, price, utility);
     }
 
-    add(product, quantity) {
-        this.items.push(new BudgetItem(product, quantity));
+    _validateMaterials(category) {
+        const rawMaterialTypeCategory = this.rawMaterialTypesCategory.find(x => x.name === category);
+        debugger;
+        for (const rawMaterialType of rawMaterialTypeCategory.rawMaterialTypes) {
+            const exists = this.materials.find(x => x.rawMaterialCategories.materialType === rawMaterialType);
+
+            if (!exists) {
+                throw new Error(`No se puede crear el producto porque falta materiales`);
+            }
+        }
     }
 }
 
-//#region productItems
-const productItems = [
-    new ProductItem(0, "CPU Core 5", 1150),
-    new ProductItem(1, "Cpu Core 4", 950),
-    new ProductItem(2, "Cpu Core 3", 750),
-    new ProductItem(4, "Monitor LED", 550),
-    new ProductItem(5, "Monitor Plasma", 650),
-    new ProductItem(6, "Teclado Ergonomico", 30),
-    new ProductItem(7, "Teclado Gamer", 45),
-    new ProductItem(8, "Mouse Standard", 15),
-    new ProductItem(9, "Mouse Gamer", 25),
-    new ProductItem(10, "Parlante", 55)
-];
-//#endregion
-const budget = new Budget();
+const productProduction = new ProductProduction('Computadora');
 
-budget.add(productItems[0], 2);
-budget.add(productItems[4], 3);
-budget.add(productItems[6], 5);
+productProduction.add(new RawMaterial("Memoria Ram 8GB", materialTypes.memory, 70), 2);
+productProduction.add(new RawMaterial("Procesador Ryzen 7 2.5gh", materialTypes.processor, 250), 1);
+productProduction.add(new RawMaterial("Fuente 750w reales", materialTypes.powerSupply, 50), 1);
 
-budget.calculate();
-console.log(budget);
-
+const product = productProduction.create("Computadora Ryzen 16Gb");
+console.log(product);
