@@ -1,4 +1,8 @@
 
+const category = {
+    computer: 0
+};
+
 const materialTypes = {
     powerSupply: 0,
     disk: 1,
@@ -42,7 +46,7 @@ class ProductProduction {
     constructor() {
         this.materials = [];
         this.rawMaterialTypesCategory = [
-            new RawMaterialTypeCategory('Computadora', [
+            new RawMaterialTypeCategory(category.computer, [
                 materialTypes.memory,
                 materialTypes.processor,
                 materialTypes.powerSupply
@@ -73,9 +77,9 @@ class ProductProduction {
 
     _validateMaterials(category) {
         const rawMaterialTypeCategory = this.rawMaterialTypesCategory.find(x => x.name === category);
-        debugger;
+
         for (const rawMaterialType of rawMaterialTypeCategory.rawMaterialTypes) {
-            const exists = this.materials.find(x => x.rawMaterialCategories.materialType === rawMaterialType);
+            const exists = this.materials.find(x => x.material.materialType === rawMaterialType);
 
             if (!exists) {
                 throw new Error(`No se puede crear el producto porque falta materiales`);
@@ -84,11 +88,11 @@ class ProductProduction {
     }
 }
 
-const productProduction = new ProductProduction('Computadora');
+const productProduction = new ProductProduction();
 
 productProduction.add(new RawMaterial("Memoria Ram 8GB", materialTypes.memory, 70), 2);
 productProduction.add(new RawMaterial("Procesador Ryzen 7 2.5gh", materialTypes.processor, 250), 1);
-productProduction.add(new RawMaterial("Fuente 750w reales", materialTypes.powerSupply, 50), 1);
+//productProduction.add(new RawMaterial("Fuente 750w reales", materialTypes.powerSupply, 50), 1);
 
-const product = productProduction.create("Computadora Ryzen 16Gb");
+const product = productProduction.create("Computadora Ryzen 16Gb", category.computer);
 console.log(product);
