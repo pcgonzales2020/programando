@@ -24,18 +24,18 @@
 // - Clases en JavaScript https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Classes
 
 class Order {
-    constructor(lines) {
+    constructor(shoppingItems) {
         this.total = 0;
         this.iva = 0;
         this.subTotal = 0;
         this.lines = [];
 
-        this._prepare(lines);
+        this._prepare(shoppingItems);
     }
 
-    _prepare(lines) {
-        for (const line of lines) {
-            const orderLine = new OrderLine(line.product, line.quantity);
+    _prepare(shoppingItems) {
+        for (const shoppingItem of shoppingItems) {
+            const orderLine = new OrderLine(shoppingItem.product, shoppingItem.quantity);
             this.lines.push(orderLine);
 
             this.total += orderLine.total;
@@ -95,9 +95,9 @@ class ShoppingCart {
     purchase() {
         const order = new Order(this.items);
 
-        this.items = [];
+        /*this.items = [];
         this.totalAmount = 0;
-        this.totalQuantity = 0;
+        this.totalQuantity = 0;*/
 
         return order;
     }
