@@ -1,7 +1,7 @@
 class MessageStatus {
-    constructor(status, message) {
+    constructor(status, time) {
         this.status = status;
-        this.message = message;
+        this.time = time;
     }
 }
 
@@ -24,30 +24,31 @@ class Flight {
         result += 'Departure date: ' + this.departure.toLocaleString() + '\n';
         result += 'Arrival date: ' + this.arrival.toLocaleString() + '\n';
 
-        if (this.isArrived) {
-            result += 'Status: arrived';
-        } else {
-            const calculateTime = this._calculateTime();
-            result += 'Status: ' + calculateTime[0].status + '\n';
-            result += calculateTime[0].message;
+        const statusMessage = this._getStatusMessage();
+        result += 'Status: ' + statusMessage.status + '\n';
+
+        if (statusMessage.time) {
+            result += 'Time: ' + statusMessage.time;
         }
 
         return result;
     }
 
-    _calculateTime() {
-        const result = [],
-            today = new Date();
+    _getStatusMessage() {
+        if (this.isArrived) {
+            return new MessageStatus('arrived', null);
+        }
+
+        const today = new Date();
 
         const differenceTimeMiliSeconds = (this.arrival - today);
         const timeString = this._msToTime(Math.abs(differenceTimeMiliSeconds));
 
         if (differenceTimeMiliSeconds < 0) {
-            result.push(new MessageStatus('delayed', 'Delayed time: ' + timeString));
-        } else {
-            result.push(new MessageStatus('on time', 'Arrival time: ' + timeString));
+            return new MessageStatus('delayed', timeString);
         }
-        return result;
+
+        return new MessageStatus('on time', timeString);
     }
 
     _msToTime(duration) {

@@ -15,10 +15,14 @@ function dateDiffToHms(startDate, endDate) {
 }
 
 class Flight {
-    constructor(number, departureDate, arrivalDate, landingDate = null) {
+    constructor(number, departureDate, arrivalDate) {
         this.number = number;
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
+        this.landingDate = null;
+    }
+
+    updateArriveStatus(landingDate) {
         this.landingDate = landingDate;
     }
 
@@ -34,7 +38,7 @@ class Flight {
         return flightStatus.DELAYED;
     }
 
-    get elapsedTime() {
+    get timeDiff() {
         return dateDiffToHms(this.arrivalDate, new Date());
     }
 }
@@ -44,8 +48,8 @@ class FlightDashboard {
         this.flights = [];
     }
 
-    add({ number, departureDate, arrivalDate, landingDate }) {
-        this.flights.push(new Flight(number, departureDate, arrivalDate, landingDate));
+    add(flight) {
+        this.flights.push(flight);
     }
 
     print() {
@@ -56,11 +60,11 @@ class FlightDashboard {
             console.info(`%cStatus: ${flight.status}`, 'color: white');
 
             if (flight.status === flightStatus.DELAYED) {
-                console.info(`%cDelayed time: ${flight.elapsedTime}`, 'color: orange');
+                console.info(`%cDelayed time: ${flight.timeDiff}`, 'color: orange');
             }
 
             if (flight.status === flightStatus.ONTIME) {
-                console.info(`%cArrival time: ${flight.elapsedTime}`, 'color: yellow');
+                console.info(`%cArrival time: ${flight.timeDiff}`, 'color: yellow');
             }
 
             if (flight.status === flightStatus.ARRIVED) {
@@ -73,8 +77,12 @@ class FlightDashboard {
 }
 
 const dashboard = new FlightDashboard();
-dashboard.add(new Flight('0001', new Date('2021-09-16 20:00:00'), new Date('2021-09-17 16:00:00'), null));
-dashboard.add(new Flight('0002', new Date('2021-08-16 19:00:00'), new Date('2021-09-17 17:00:00'), null));
-dashboard.add(new Flight('0003', new Date('2021-09-16 20:00:00'), new Date('2021-09-17 16:00:00'), new Date('2021-09-17 16:02:00')));
+dashboard.add(new Flight('0001', new Date('2021-09-16 20:00:00'), new Date('2021-09-17 16:00:00')));
+dashboard.add(new Flight('0002', new Date('2021-08-16 19:00:00'), new Date('2021-09-17 17:00:00')));
+
+const arrivedFlight = new Flight('0003', new Date('2021-09-16 20:00:00'), new Date('2021-09-17 16:00:00'));
+arrivedFlight.updateArriveStatus(new Date('2021-09-17 16:02:00'));
+
+dashboard.add(arrivedFlight);
 
 dashboard.print();
