@@ -12,13 +12,20 @@
         "no-console": "off",
         "no-use-before-define": "warn",
         "spaced-comment": "warn",
-        "indent": ["error", 4],
-        "semi": [2, "always"],
+        "indent": [
+            "error",
+            4
+        ],
+        "semi": [
+            2,
+            "always"
+        ],
         "space-before-function-paren": "off",
         "one-var": "off",
         "no-useless-constructor": "off",
         "no-unneeded-ternary": "off",
-        "no-constant-condition": "off"
+        "no-constant-condition": "off",
+        "eol-last": "off"
     },
     "extends": [
         "standard"
