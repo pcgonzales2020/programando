@@ -1,0 +1,30 @@
+{
+  "name": "programando",
+  "version": "1.0.0",
+  "description": "Clases de mi aprendizaje con el bravo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pcgonzales2020/programando.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pcgonzales2020/programando/issues"
+  },
+  "homepage": "https://github.com/pcgonzales2020/programando#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "standard": "^16.0.3"
+  }
+}
