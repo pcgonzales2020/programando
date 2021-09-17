@@ -50,7 +50,7 @@ class ProductProduction {
                 materialTypes.memory,
                 materialTypes.processor,
                 materialTypes.powerSupply
-            ]),
+            ])
         ];
     }
 

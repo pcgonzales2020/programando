@@ -1,5 +1,5 @@
 // all falsy values in javascript
-const falsyValues = [false, '', "", 0, -0, 0n, NaN, null, undefined];
+const falsyValues = [false, '', '', 0, -0, 0n, NaN, null, undefined];
 
 console.log('--- FALSY VALUES ---');
 
@@ -19,7 +19,7 @@ console.log('01. false ? true : false =>', false ? true : false);
 //     return true;
 // }
 
-console.log('02. "" ? true : false =>', "" ? true : false);
+console.log('02. "" ? true : false =>', '' ? true : false);
 console.log('03. 0 ? true : false =>', 0 ? true : false);
 console.log('04. null || undefined || NaN ? true : false =>', null || undefined || NaN ? true : false);
 console.log('05. {} ? true : false =>', {} ? true : false);
