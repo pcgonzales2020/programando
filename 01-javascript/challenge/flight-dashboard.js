@@ -1,7 +1,7 @@
 const flightStatus = {
     ARRIVED: 'arrived',
     DELAYED: 'delayed',
-    ONFLIGHT: 'on flight'
+    ONTIME: 'on time'
 };
 
 function dateDiffToHms(startDate, endDate) {
@@ -28,7 +28,7 @@ class Flight {
         }
 
         if (this.arrivalDate > new Date()) {
-            return flightStatus.ONFLIGHT;
+            return flightStatus.ONTIME;
         }
 
         return flightStatus.DELAYED;
@@ -43,7 +43,7 @@ class Flight {
     }
 
     get arrivalTime() {
-        if (this.status === flightStatus.ONFLIGHT) {
+        if (this.status === flightStatus.ONTIME) {
             return dateDiffToHms(new Date(), this.arrivalDate);
         }
 
@@ -71,8 +71,12 @@ class FlightDashboard {
                 console.info(`%cDelayed time: ${flight.delayedTime}`, 'color: orange');
             }
 
-            if (flight.status === flightStatus.ONFLIGHT) {
+            if (flight.status === flightStatus.ONTIME) {
                 console.info(`%cArrival time: ${flight.arrivalTime}`, 'color: yellow');
+            }
+
+            if (flight.status === flightStatus.ARRIVED) {
+                console.info(`%cLanding date: ${flight.landingDate.toLocaleDateString()} ${flight.landingDate.toLocaleTimeString()}`, 'color: #90ee90');
             }
 
             console.log('%c--------------', 'color: grey');
@@ -82,7 +86,7 @@ class FlightDashboard {
 
 const dashboard = new FlightDashboard();
 dashboard.add(new Flight('0001', new Date('2021-09-16 20:00:00'), new Date('2021-09-17 01:00:00'), null));
-dashboard.add(new Flight('0002', new Date('2021-09-16 19:00:00'), new Date('2021-09-16 23:00:00'), null));
+dashboard.add(new Flight('0002', new Date('2021-08-16 19:00:00'), new Date('2021-09-16 23:00:00'), null));
 dashboard.add(new Flight('0003', new Date('2021-09-16 20:00:00'), new Date('2021-09-16 20:00:00'), new Date('2021-09-16 20:02:00')));
 
 dashboard.print();
