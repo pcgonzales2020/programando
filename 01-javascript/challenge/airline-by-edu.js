@@ -22,7 +22,7 @@ class Flight {
         this.landingDate = null;
     }
 
-    updateArriveStatus(landingDate) {
+    updateArrivalStatus(landingDate) {
         this.landingDate = landingDate;
     }
 
@@ -81,7 +81,7 @@ dashboard.add(new Flight('0001', new Date('2021-09-16 20:00:00'), new Date('2021
 dashboard.add(new Flight('0002', new Date('2021-08-16 19:00:00'), new Date('2021-09-17 17:00:00')));
 
 const arrivedFlight = new Flight('0003', new Date('2021-09-16 20:00:00'), new Date('2021-09-17 16:00:00'));
-arrivedFlight.updateArriveStatus(new Date('2021-09-17 16:02:00'));
+arrivedFlight.updateArrivalStatus(new Date('2021-09-17 16:02:00'));
 
 dashboard.add(arrivedFlight);
 
