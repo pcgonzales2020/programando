@@ -41,8 +41,8 @@ class TimeMachineCar extends Vehicle {
     }
 }
 
-const motorcycle1 = new Motorcycle("ASX2021", "Hiunday");
+const motorcycle1 = new Motorcycle('ASX2021', 'Hiunday');
 motorcycle1.run();
 
-const car = new TimeMachineCar("TIMEX1", "Delorian");
+const car = new TimeMachineCar('TIMEX1', 'Delorian');
 car.travelTroughTime();

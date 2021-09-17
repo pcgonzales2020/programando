@@ -2,13 +2,13 @@
 // ref: https://developer.mozilla.org/es/docs/Glossary/Primitive
 
 // inmutable example
-let foo = "Christian";
+const foo = 'Christian';
 foo.toUpperCase();
 
 console.log(foo); // Christian
 
 // mutable example
-let user = {
+const user = {
     id: 1,
     name: 'Cristian'
 };
@@ -18,17 +18,17 @@ user.id++;
 console.log(user); // { id: 2, ... }
 
 // mutable example #2
-let users = [
-    { name: "Christian" },
-    { name: "Eduardo" }
+const users = [
+    { name: 'Christian' },
+    { name: 'Eduardo' }
 ];
 
-users.push({name: "xxx"})
+users.push({ name: 'xxx' });
 
 console.log(users); // length => 3 items
 
 // advanced example
-let order = {
+const order = {
     total: 100
 };
 

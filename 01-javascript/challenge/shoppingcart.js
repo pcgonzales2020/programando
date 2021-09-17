@@ -81,7 +81,7 @@ class ShoppingCart {
             new ShoppingCartItem(product, quantity)
         );
 
-        this._summary()
+        this._summary();
     }
 
     remove(productId) {
@@ -95,9 +95,9 @@ class ShoppingCart {
     purchase() {
         const order = new Order(this.items);
 
-        /*this.items = [];
+        /* this.items = [];
         this.totalAmount = 0;
-        this.totalQuantity = 0;*/
+        this.totalQuantity = 0; */
 
         return order;
     }
@@ -113,7 +113,7 @@ class ShoppingCart {
     }
 
     // other option in runtime
-    /*get totalAmount() {
+    /* get totalAmount() {
         let result = 0;
 
         for (const item of this.items) {
@@ -131,14 +131,14 @@ class ShoppingCart {
         }
 
         return result;
-    }*/
+    } */
 }
 
 // product catalog
 const products = [
-    new Product(1, "Guitar", 3200),
-    new Product(2, "Laptop", 1600),
-    new Product(3, "String Guitar", 8)
+    new Product(1, 'Guitar', 3200),
+    new Product(2, 'Laptop', 1600),
+    new Product(3, 'String Guitar', 8)
 ];
 
 const cart = new ShoppingCart();
@@ -147,16 +147,14 @@ const cart = new ShoppingCart();
 console.log(`Add ${products[0].name} product to shopping cart`);
 cart.add(products[0], 2);
 
-
 // add laptop
 console.log(`Add ${products[1].name} product to shopping cart`);
 cart.add(products[1], 3);
 
-
-/*console.log('Check total amount and quantity', {
+/* console.log('Check total amount and quantity', {
     total: cart.totalAmount,
     quantity: cart.totalQuantity
-});*/
+}); */
 
 // remove second product
 // console.log(`Remove ${products[1].name} product from shopping cart`);

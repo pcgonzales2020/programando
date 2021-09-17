@@ -7,7 +7,7 @@ const materialTypes = {
     powerSupply: 0,
     disk: 1,
     memory: 2,
-    processor: 3,
+    processor: 3
 };
 
 class RawMaterialTypeCategory {
@@ -50,7 +50,7 @@ class ProductProduction {
                 materialTypes.memory,
                 materialTypes.processor,
                 materialTypes.powerSupply
-            ]),
+            ])
         ];
     }
 
@@ -82,7 +82,7 @@ class ProductProduction {
             const exists = this.materials.find(x => x.material.materialType === rawMaterialType);
 
             if (!exists) {
-                throw new Error(`No se puede crear el producto porque falta materiales`);
+                throw new Error('No se puede crear el producto porque falta materiales');
             }
         }
     }
@@ -90,9 +90,9 @@ class ProductProduction {
 
 const productProduction = new ProductProduction();
 
-productProduction.add(new RawMaterial("Memoria Ram 8GB", materialTypes.memory, 70), 2);
-productProduction.add(new RawMaterial("Procesador Ryzen 7 2.5gh", materialTypes.processor, 250), 1);
-//productProduction.add(new RawMaterial("Fuente 750w reales", materialTypes.powerSupply, 50), 1);
+productProduction.add(new RawMaterial('Memoria Ram 8GB', materialTypes.memory, 70), 2);
+productProduction.add(new RawMaterial('Procesador Ryzen 7 2.5gh', materialTypes.processor, 250), 1);
+// productProduction.add(new RawMaterial("Fuente 750w reales", materialTypes.powerSupply, 50), 1);
 
-const product = productProduction.create("Computadora Ryzen 16Gb", category.computer);
+const product = productProduction.create('Computadora Ryzen 16Gb', category.computer);
 console.log(product);
