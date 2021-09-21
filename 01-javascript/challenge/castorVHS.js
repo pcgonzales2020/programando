@@ -20,8 +20,17 @@ class RentedMovie {
         this.customer = customer;
         this.movie = movie;
         this.rentedDate = rentedDate;
-        this.returnDate = this.rentedDate.setDate(this.rentedDate.getDate() + 2);
-        this.price = (customer.VIP ? 4.25 : 5);
+
+        const returnDate = new Date(this.rentedDate.getTime());
+        returnDate.setDate(returnDate.getDate() + 2);
+        this.returnDate = returnDate;
+
+        this.price = 5;
+
+        if (customer.VIP) {
+            this.price *= 1 - 0.15;
+        }
+
         this.devolutionDate = null;
     }
 
@@ -55,8 +64,8 @@ class RentedMovieDashboard {
         for (const rentedMovie of this.rentedMovies) {
             console.info(`%cMovie: ${rentedMovie.movie}`, 'color: cyan');
             console.info(`%cCustomer: ${rentedMovie.customer.name}`, 'color: white');
-            console.info(`%cRented Date: ${rentedMovie.rentedDate}`, 'color: white');
-            console.info(`%cReturn Date: ${rentedMovie.returnDate}`, 'color: white');
+            console.info(`%cRented Date: ${rentedMovie.rentedDate.toLocaleDateString()}`, 'color: white');
+            console.info(`%cReturn Date: ${rentedMovie.returnDate.toLocaleDateString()}`, 'color: white');
 
             if (rentedMovie.status === rentedStatus.DELAYED) {
                 console.info(`%cDelayed Time: ${rentedMovie.hourExcess}h`, 'color: orange');
