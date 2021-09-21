@@ -1,9 +1,4 @@
-class MessageStatus {
-    constructor(status, time) {
-        this.status = status;
-        this.time = time;
-    }
-}
+const { MessageStatus } = require('./message-status');
 
 class Flight {
     constructor(number, departure, arrival) {
@@ -64,6 +59,6 @@ class Flight {
     }
 }
 
-const flight = new Flight('0001', new Date('2021-09-14T12:00:00'), new Date('2021-09-17T16:30:00'));
-flight.markAsArrived();
-console.log(flight.getFlightDetail());
+module.exports = {
+    Flight
+};
